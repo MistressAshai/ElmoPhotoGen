@@ -13,6 +13,6 @@ A tool to make inserting images into GFL2's in-game photo collection quicker and
 - Edit image data
 
 ## How to use
-- Download or build it yourself
+- Download [latest](https://github.com/MistressAshai/ElmoPhotoGen/releases/latest) or build it yourself
 - Place `ElmoPhotoGen.exe` at `GIRLS' FRONTLINE 2 EXILIUM\GF2_Exilium_Data\LocalCache\Data\<uid>_lobby_photo`
 - Run the program
