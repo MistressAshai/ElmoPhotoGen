@@ -19,7 +19,7 @@ struct PhotoHeadData {
     hash: Vec<u8>,
 }
 
-fn pause() {
+fn exit() {
     println!("\nPress Enter to exit...");
     let _ = io::stdin().read(&mut [0u8]).unwrap();
     std::process::exit(1);
@@ -34,7 +34,7 @@ fn get_uuid() -> String {
 
     if !folder_name.contains("_lobby_photo") {
         println!(r#"Invalid folder: must run from "GIRLS' FRONTLINE 2 EXILIUM\GF2_Exilium_Data\LocalCache\Data\<uid>_lobby_photo""#);
-        pause();
+        exit();
     }
 
     let uuid = folder_name.split_once('_')
@@ -150,5 +150,5 @@ fn main() {
 
     println!("Successfully sent photos to the Elmo!");
     println!("Remember, photos must be 16:9, otherwise stretching will occur!");
-    pause();
+    exit();
 }
