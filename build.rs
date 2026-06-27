@@ -1,4 +1,3 @@
-
 #[cfg(windows)]
 fn main() {
     let mut res = tauri_winres::WindowsResource::new();

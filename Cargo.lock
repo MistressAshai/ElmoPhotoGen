@@ -9,6 +9,7 @@ dependencies = [
  "md5",
  "nanoserde",
  "tauri-winres",
+ "windows-sys",
 ]
 
 [[package]]

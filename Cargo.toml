@@ -10,6 +10,7 @@ tauri-winres = "0.3.6"
 [dependencies]
 md5 = "0.8.0"
 nanoserde = { version = "0.2.1", default-features = false, features = ["json"] }
+windows-sys = { version = "0.59", default-features = false, features = ["Win32_System_Console"] }
 
 [profile.release]
 lto = true

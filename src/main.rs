@@ -99,10 +99,9 @@ fn create_photoheaddata(path: &Path) -> PhotoHeadData {
     }
 }
 
-fn create_header() -> LpHeadInfo {
+fn create_header(uuid: &str) -> LpHeadInfo {
     let mut photos = get_all_photos();
     let photo_count = photos.len() as u32;
-    let uuid: u64 = get_uuid().parse().unwrap();
 
     println!("Found {photo_count} photos...");
 
@@ -113,14 +112,31 @@ fn create_header() -> LpHeadInfo {
     }
 
     LpHeadInfo {
-        id: uuid,
-        index: photos.len() as u32,
+        id: uuid.parse().unwrap(),
+        index: photo_count,
         photoHeadDatas: photos,
     }
 }
 
+#[cfg(windows)]
+fn set_title() {
+    use std::{ffi::OsStr, os::windows::ffi::OsStrExt};
+    use windows_sys::Win32::System::Console::SetConsoleTitleW;
+
+    let title = format!("{} v{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+    let wide: Vec<u16> = OsStr::new(&title)
+        .encode_wide()
+        .chain(std::iter::once(0))
+        .collect();
+
+    unsafe { SetConsoleTitleW(wide.as_ptr()); }
+}
+
 fn main() {
-    let header = create_header();
+    set_title();
+
+    let uuid = get_uuid();
+    let header = create_header(&uuid);
     let json = nanoserde::SerJson::serialize_json(&header);
 
     let path = std::env::current_dir().expect("no cwd");
@@ -129,7 +145,7 @@ fn main() {
         .expect("no parent dir")
         .join("lpheadinfo");
 
-    let output = parent_folder.join(get_uuid());
+    let output = parent_folder.join(&uuid);
     fs::write(&output, json).expect("failed to write json");
 
     println!("Successfully sent photos to the Elmo!");
