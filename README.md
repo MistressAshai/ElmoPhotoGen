@@ -5,7 +5,7 @@ A tool to make inserting images into GFL2's in-game photo collection quicker and
 
 ### What it does
 - Reads images within `GIRLS' FRONTLINE 2 EXILIUM\GF2_Exilium_Data\LocalCache\Data\<uid>_lobby_photo`
-- Reconstructs stored data used to verify that the screenshots were made in-game
+- Reconstructs locally stored data used to verify that the screenshots were made in-game
 
 ### What it does not do
 - Tamper with game code
